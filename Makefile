@@ -14,6 +14,6 @@ multi_ccc:
 
 # You can add some packages to ./buildkit_cache/requirements.txt and execute $ make buildkit_cache. You'll see you don't download packages that had already existed in it but use cache prepared by pip located at /root/.cache
 # If you remove --mount=type=cache,target=/root/.cache from buildkit_cache/Dockerfile, you'll see it downloads packages that are not newly added.
-.PHONY: all buildkit_cache clean
+.PHONY: all buildkit_cache clean  # all ~~ clearn is necessary because it you cannot make a target if a directory of the same name exists.
 buildkit_cache:
 	@docker build -t pg-buildkit-cache --progress=plain ./buildkit_cache
