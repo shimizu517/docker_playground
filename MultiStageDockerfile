@@ -1,0 +1,14 @@
+FROM alpine:latest AS base
+RUN mkdir /code
+WORKDIR /code
+RUN touch /code/foo
+
+FROM base AS aaa
+RUN touch /code/aaa
+
+FROM aaa AS bbb
+RUN touch /code/bbb
+
+FROM alpine:latest AS ccc
+COPY --from=aaa /code /code
+
